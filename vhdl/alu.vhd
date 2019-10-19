@@ -15,19 +15,21 @@ entity alu is
 end alu;
 
 architecture alu_arch of alu is
-    signal adder_subtract_out : std_logic_vector(31 downto 0);
-    signal logic_unit_out : std_logic_vector(31 downto 0);
+    signal add, sub, adder_subtract_out, logic_unit_out : std_logic_vector(31 downto 0);
 begin
-    process(x, y, add_sub)
+    add <= x + y;
+    sub <= x - y;
+
+    adder_subtract_unit : process(x, y, add_sub, add, sub) -- must add and sub be passed in
     begin
         if (add_sub = '0') then
-            adder_subtract_out <= x + y;
+            adder_subtract_out <= add;
         else
-            adder_subtract_out <= x - y;
+            adder_subtract_out <= sub;
         end if;
     end process;
 
-    process(x, y, logic_func)
+    logic_unit : process(x, y, logic_func)
     begin
         case logic_func is
             when "00" => logic_unit_out <= x and y;
@@ -37,17 +39,17 @@ begin
         end case;
     end process;
 
-    process(y, adder_subtract_out, logic_unit_out, func)
+    mux4_unit : process(y, sub, adder_subtract_out, logic_unit_out, func)
     begin
         case func is
             when "00" => output <= y;
-            when "01" => output <= "0000000000000000000000000000000" & adder_subtract_out(31);
+            when "01" => output <= "0000000000000000000000000000000" & sub(31);
             when "10" => output <= adder_subtract_out;
             when others => output <= logic_unit_out;
         end case;
     end process;
 
-    process(adder_subtract_out)
+    zero_unit : process(adder_subtract_out)
     begin
         zero <= '1';
 
@@ -58,6 +60,8 @@ begin
         end loop;
     end process;
 
-    overflow <= (x(31) and y(31) and not (adder_subtract_out(31))) or (not (x(31)) and not (y(31)) and adder_subtract_out(31));
-
+    overflow_unit : process(x, y, adder_subtract_out)
+    begin
+        overflow <= (x(31) and y(31) and not (adder_subtract_out(31))) or (not (x(31)) and not (y(31)) and adder_subtract_out(31));
+    end process;
 end alu_arch;
