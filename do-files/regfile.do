@@ -9,6 +9,7 @@ add wave read_b
 add wave write_address
 add wave out_a
 add wave out_b
+add wave reg
 
 # reset
 force reset 1
