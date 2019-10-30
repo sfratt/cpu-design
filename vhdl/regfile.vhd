@@ -27,16 +27,16 @@ begin
     begin
         if reset = '1' then
             for i in 0 to 31 loop
-                reg(i) <= (others => '0')
-            end loop ;
+                reg(i) <= (others => '0');
+            end loop;
         elsif rising_edge(clk) and write = '1' then
-            reg(to_integer(write_address)) <= din;
-        end if ;
+            reg(conv_integer(write_address)) <= din;
+        end if;
     end process;
 
     read_out : process(read_a, read_b, reg)
     begin
-        out_a <= reg(to_integer(read_a));
-        out_b <- reg(to_integer(read_b));
+        out_a <= reg(conv_integer(read_a));
+        out_b <= reg(conv_integer(read_b));
     end process ;
 end;
