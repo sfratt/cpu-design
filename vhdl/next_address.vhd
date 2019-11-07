@@ -59,4 +59,4 @@ begin
                 next_pc <= pc + X"0000001"; -- straight-line execution
         end case;
     end process;
-end next_address_arch ;
+end next_address_arch;
