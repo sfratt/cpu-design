@@ -32,20 +32,28 @@ begin
     logic_unit : process(x, y, logic_func)
     begin
         case logic_func is
-            when "00" => logic_unit_out <= x and y;
-            when "01" => logic_unit_out <= x or y;
-            when "10" => logic_unit_out <= x xor y;
-            when others => logic_unit_out <= x nor y;
+            when "00" => 
+                logic_unit_out <= x and y;
+            when "01" => 
+                logic_unit_out <= x or y;
+            when "10" => 
+                logic_unit_out <= x xor y;
+            when others => 
+                logic_unit_out <= x nor y;
         end case;
     end process;
 
     mux4_unit : process(y, sub, adder_subtract_out, logic_unit_out, func)
     begin
         case func is
-            when "00" => output <= y;
-            when "01" => output <= "0000000000000000000000000000000" & sub(31);
-            when "10" => output <= adder_subtract_out;
-            when others => output <= logic_unit_out;
+            when "00" => 
+                output <= y;
+            when "01" => 
+                output <= "0000000000000000000000000000000" & sub(31);
+            when "10" => 
+                output <= adder_subtract_out;
+            when others => 
+                output <= logic_unit_out;
         end case;
     end process;
 
