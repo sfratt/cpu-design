@@ -57,8 +57,7 @@ begin
         end case;
     end process;
 
-    zero_unit : process(adder_subtract_out)
-    begin
+    
         -- zero <= '1';
 
         -- for item in 0 to 31 loop
@@ -72,12 +71,17 @@ begin
 		-- else
 		-- 	zero <= '0';
         -- end if;
-        zero <= '1' when (conv_integer(adder_subtract_out) = '0') else '0';
+    zero <= '1' when (conv_integer(adder_subtract_out) = 0) else '0';
 
-    end process;
 
-    overflow_unit : process(x, y, adder_subtract_out)
-    begin
-        overflow <= (x(31) and y(31) and not (adder_subtract_out(31))) or (not (x(31)) and not (y(31)) and adder_subtract_out(31));
-    end process;
+    -- overflow_unit : process(x, y, adder_subtract_out)
+    -- begin
+    --     overflow <= (x(31) and y(31) and not (adder_subtract_out(31))) or (not (x(31)) and not (y(31)) and adder_subtract_out(31));
+    -- end process;
+
+    overflow <= '1' when func = "10" and add_sub = '0' and x(31) = '0' and y(31) = '0' and adder_subtract(31) = '1'
+	                else '1' when func = "10" and add_sub = '0' and x(31) = '1' and y(31) = '1' and adder_subtract(31) = '0'
+	                else '1' when func = "10" and add_sub = '1' and x(31) = '0' and y(31) = '1' and adder_subtract(31) = '1'
+	                else '1' when func = "10" and add_sub = '1' and x(31) = '1' and y(31) = '0' and adder_subtract(31) = '0'
+	                else '0';
 end architecture alu_arch;
