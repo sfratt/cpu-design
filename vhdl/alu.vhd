@@ -17,11 +17,11 @@ end alu;
 architecture alu_arch of alu is
     signal add, sub, adder_subtract_out, logic_unit_out : std_logic_vector(31 downto 0);
 begin
-    add <= signed(x) + signed(y);
-    sub <= signed(x) - signed(y);
-
     adder_subtract_unit : process(x, y, add_sub, add, sub) -- must add and sub be passed in
     begin
+        add <= x + y;
+        sub <= x - y;    
+
         if (add_sub = '0') then
             adder_subtract_out <= add;
         else
