@@ -85,7 +85,7 @@ begin
     );
 
     -- Sign Extend
-    sign_extend_unit : entity work.sign_extend_unit
+    sign_extend_unit : entity work.sign_extend
     port map(
         data_in => instruction_out(15 downto 0),
         func => func,

@@ -1,13 +1,13 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity d_cache is
+entity data_cache is
     port(
 
     );
-end d_cache;
+end data_cache;
 
-architecture d_cache_arch of d_cache is
+architecture d_cache_arch of data_cache is
 
     signal 
 

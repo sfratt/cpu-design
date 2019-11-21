@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 
-entity i_cache is
+entity instruction_cache is
     port(
         address_in      : in std_logic_vector(4 downto 0);
         -- reg_dst         : in std_logic;
@@ -10,9 +10,9 @@ entity i_cache is
         -- write_address   : out std_logic_vector(4 downto 0);
         instruction_out : out std_logic_vector(31 downto 0)
     );
-end i_cache;
+end instruction_cache;
 
-architecture i_cache_arch of i_cache is
+architecture i_cache_arch of instruction_cache is
     signal rt_inter, rd_inter : std_logic_vector(4 downto 0);
 begin
     i_cache_unit : process(address_in)
