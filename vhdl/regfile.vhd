@@ -7,7 +7,7 @@ use ieee.std_logic_unsigned.all;
 
 entity regfile is 
     port(
-        din : in std_logic_vector(31 downto 0);
+        d_in : in std_logic_vector(31 downto 0);
         reset : in std_logic;
         clk : in std_logic;
         write : in std_logic;
@@ -30,7 +30,7 @@ begin
                 reg(i) <= (others => '0');
             end loop;
         elsif rising_edge(clk) and write = '1' then
-            reg(conv_integer(write_address)) <= din;
+            reg(conv_integer(write_address)) <= d_in;
         end if;
     end process;
 
