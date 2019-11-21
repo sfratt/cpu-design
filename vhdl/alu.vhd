@@ -59,13 +59,19 @@ begin
 
     zero_unit : process(adder_subtract_out)
     begin
-        zero <= '1';
+        -- zero <= '1';
 
-        for item in 0 to 31 loop
-            if (adder_subtract_out(item) = '1') then
-                zero <= '0';
-            end if;
-        end loop;
+        -- for item in 0 to 31 loop
+        --     if (adder_subtract_out(item) = '1') then
+        --         zero <= '0';
+        --     end if;
+        -- end loop;
+
+        if (adder_subtract_out = (adder_subtract_out'range => '0')) then
+			zero <= '1';
+		else
+			zero <= '0';
+		end if;
     end process;
 
     overflow_unit : process(x, y, adder_subtract_out)
