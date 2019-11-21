@@ -5,12 +5,12 @@ use ieee.std_logic_unsigned.all;
 
 entity next_address is
     port(
-        rt, rs : in std_logic_vector(31 downto 0); -- two register inputs
-        pc : in std_logic_vector(31 downto 0);
+        rt, rs         : in std_logic_vector(31 downto 0); -- two register inputs
+        pc             : in std_logic_vector(31 downto 0);
         target_address : in std_logic_vector(25 downto 0);
-        branch_type : in std_logic_vector(1 downto 0);
-        pc_sel : in std_logic_vector(1 downto 0);
-        next_pc : out std_logic_vector(31 downto 0)
+        branch_type    : in std_logic_vector(1 downto 0);
+        pc_sel         : in std_logic_vector(1 downto 0);
+        next_pc        : out std_logic_vector(31 downto 0)
     );
 end next_address;
 
@@ -59,4 +59,4 @@ begin
                 next_pc <= pc + X"0000001"; -- straight-line execution
         end case;
     end process;
-end next_address_arch;
+end architecture next_address_arch;
