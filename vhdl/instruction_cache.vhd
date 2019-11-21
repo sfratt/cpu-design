@@ -49,4 +49,4 @@ begin
     --             write_address <= rd_inter;
     --     end case ;
     -- end process;
-end i_cache_arch;
+end architecture i_cache_arch;

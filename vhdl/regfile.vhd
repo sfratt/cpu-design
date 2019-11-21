@@ -7,15 +7,15 @@ use ieee.std_logic_unsigned.all;
 
 entity regfile is 
     port(
-        d_in : in std_logic_vector(31 downto 0);
-        reset : in std_logic;
-        clk : in std_logic;
-        write : in std_logic;
-        read_a : in std_logic_vector(4 downto 0);
-        read_b : in std_logic_vector(4 downto 0);
+        d_in          : in std_logic_vector(31 downto 0);
+        reset         : in std_logic;
+        clk           : in std_logic;
+        write         : in std_logic;
+        read_a        : in std_logic_vector(4 downto 0);
+        read_b        : in std_logic_vector(4 downto 0);
         write_address : in std_logic_vector(4 downto 0);
-        out_a : out std_logic_vector(31 downto 0);
-        out_b : out std_logic_vector(31 downto 0)
+        out_a         : out std_logic_vector(31 downto 0);
+        out_b         : out std_logic_vector(31 downto 0)
     );
 end regfile;
 
@@ -39,4 +39,4 @@ begin
         out_a <= reg(conv_integer(read_a));
         out_b <= reg(conv_integer(read_b));
     end process ;
-end reg_arch;
+end architecture reg_arch;

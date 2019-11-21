@@ -1,13 +1,13 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_unsigned.all;
+-- use ieee.std_logic_unsigned.all;
 
 entity pc is
     port(
-        d_in  : in std_logic_vector(31 downto 0);
-        clk   : in std_logic;
-        reset : in std_logic;
-        q_out : out std_logic_vector(31 downto 0)
+        next_pc : in std_logic_vector(31 downto 0);
+        clk     : in std_logic;
+        reset   : in std_logic;
+        pc      : out std_logic_vector(31 downto 0)
     );
 end pc;
 
@@ -16,9 +16,9 @@ begin
     pc_unit : process(clk, reset)
     begin
         if reset = '1' then
-            q_out <= X"00000000";
+            pc <= X"00000000";
         elsif rising_edge(clk) then
-            q_out <= d_in;
+            pc <= next_pc;
         end if;
     end process;
-end pc_arch;
+end architecture pc_arch;

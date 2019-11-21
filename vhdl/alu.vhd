@@ -72,4 +72,4 @@ begin
     begin
         overflow <= (x(31) and y(31) and not (adder_subtract_out(31))) or (not (x(31)) and not (y(31)) and adder_subtract_out(31));
     end process;
-end alu_arch;
+end architecture alu_arch;
