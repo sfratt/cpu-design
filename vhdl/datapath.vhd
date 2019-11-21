@@ -35,6 +35,7 @@ architecture datapath_arch of datapath is
     signal y_in            : std_logic_vector(31 downto 0);
     signal alu_out         : std_logic_vector(31 downto 0);
     signal sign_extend_out : std_logic_vector(31 downto 0);
+    signal d_cache_out     : std_logic_vector(31 downto 0);
 begin
     -- Next Address
     next_address_unit : entity work.next_address
@@ -69,7 +70,7 @@ begin
     rt_inter <= instruction_out(20 downto 16);
     rd_inter <= instruction_out(15 downto 11);
 
-    write_address <= rt_inter when (reg_dst = '0') else rd_inter; -- mux2
+    write_address <= rt_inter when (reg_dst = '0') else rd_inter; -- reg_dst_mux2
 
     -- Regfile
     regfile_unit : entity work.regfile
@@ -93,7 +94,7 @@ begin
         data_out => sign_extend_out
     );
 
-    y_in <= out_b when (alu_src = '0') else sign_extend_out;
+    y_in <= out_b when (alu_src = '0') else sign_extend_out; -- alu_src_mux2
 
     -- Arithmetic Logic Unit
     alu_unit : entity work.alu
@@ -107,5 +108,17 @@ begin
         overflow => overflow,
         zero => zero
     );
+
+    data_cache_unit : entity work.data_cache
+    port map(
+        d_in => out_b,
+        address => alu_out(4 downto 0),
+        clk => clk,
+        reset => reset,
+        data_write => data_write,
+        d_out => d_cache_out
+    );
+
+    regfile_in <= d_cache_out when (reg_in_src = '0') else alu_out; -- reg_in_src_mux2
 
 end architecture datapath_arch;
