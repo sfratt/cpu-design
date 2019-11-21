@@ -13,8 +13,8 @@ entity datapath is
         reg_write   : in std_logic;
         data_write  : in std_logic;
         add_sub     : in std_logic;
-        logic_func  : in std_logic;
-        func        : in std_logic;
+        logic_func  : in std_logic_vector(1 downto 0);
+        func        : in std_logic_vector(2 downto 0);
         overflow    : out std_logic;
         zero        : out std_logic
     );
