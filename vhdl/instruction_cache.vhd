@@ -28,6 +28,7 @@ begin
                 instruction_out <= "00001000000000000000000000000010"; -- jump 00010
             when "00100" =>              
                 instruction_out <= "00000000000000000000000000000000"; -- dont care
+            when others =>
         end case;
     end process;
 
