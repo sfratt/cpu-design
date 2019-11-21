@@ -67,11 +67,13 @@ begin
         --     end if;
         -- end loop;
 
-        if (adder_subtract_out = (adder_subtract_out'range => '0')) then
-			zero <= '1';
-		else
-			zero <= '0';
-		end if;
+        -- if (adder_subtract_out = (adder_subtract_out'range => '0')) then
+		-- 	zero <= '1';
+		-- else
+		-- 	zero <= '0';
+        -- end if;
+        zero <= '1' when (conv_integer(adder_subtract_out) = '0') else '0';
+
     end process;
 
     overflow_unit : process(x, y, adder_subtract_out)
