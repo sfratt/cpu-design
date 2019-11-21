@@ -14,7 +14,7 @@ entity datapath is
         data_write  : in std_logic;
         add_sub     : in std_logic;
         logic_func  : in std_logic_vector(1 downto 0);
-        func        : in std_logic_vector(2 downto 0);
+        func        : in std_logic_vector(1 downto 0);
         overflow    : out std_logic;
         zero        : out std_logic
     );
@@ -33,6 +33,7 @@ architecture datapath_arch of datapath is
     signal write_address   : std_logic_vector(4 downto 0);
     signal regfile_in      : std_logic_vector(31 downto 0);
     signal y_in            : std_logic_vector(31 downto 0);
+    signal alu_out         : std_logic_vector(31 downto 0);
     signal sign_extend_out : std_logic_vector(31 downto 0);
 begin
     -- Next Address
@@ -93,5 +94,18 @@ begin
     );
 
     y_in <= out_b when (alu_src = '0') else sign_extend_out;
+
+    -- Arithmetic Logic Unit
+    alu_unit : entity work.alu
+    port map(
+        x => out_a,
+        y => y_in,
+        add_sub => add_sub,
+        logic_func => logic_func,
+        func => func,
+        output => alu_out,
+        overflow => overflow,
+        zero => zero
+    );
 
 end architecture datapath_arch;
