@@ -39,4 +39,4 @@ begin
         out_a <= reg(conv_integer(read_a));
         out_b <= reg(conv_integer(read_b));
     end process ;
-end;
+end reg_arch;
