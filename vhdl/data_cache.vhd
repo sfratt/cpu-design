@@ -6,7 +6,7 @@ entity data_cache is
         data_in : in std_logic_vector(31 downto 0);
         address : in std_logic_vector(4 downto 0);
         clk : in std_logic;
-        reset : in std_logic;
+        rst : in std_logic;
         data_write : in std_logic;
         data_out : out std_logic_vector(31 downto 0)
     );
