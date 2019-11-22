@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
 
 entity data_cache is
     port(
@@ -16,16 +17,19 @@ architecture d_cache_arch of data_cache is
     type locations is array(0 to 31) of std_logic_vector(31 downto 0);
     signal loc : locations;
 begin
-    data_out <= loc(conv_integer(address));
 
-    data_cache_unit : process(clk, reset)
+    data_cache_unit : process(clk, rst)
     begin
-        if reset = '1' then
+        if rst = '1' then
             for i in 0 to 31 loop
                 loc(i) <= (others => '0');
             end loop;
+        elsif rising_edge(clk) and data_write = '0' then
+            data_out <= loc(conv_integer(address));
+            loc(conv_integer(address)) <= data_in;
         elsif rising_edge(clk) and data_write = '1' then
-            loc(conv_integer(write_address)) <= data_in;
+            data_out <= loc(conv_integer(address));
+            loc(conv_integer(address)) <= data_in;
         end if;
     end process;
 end architecture d_cache_arch;
