@@ -72,7 +72,7 @@ begin
 
     write_address <= rt_inter when (reg_dst = '0') else rd_inter; -- reg_dst_mux2
 
-    -- Regfile
+    -- Register File
     regfile_unit : entity work.regfile
     port map(
         d_in => regfile_in,
@@ -109,14 +109,15 @@ begin
         zero => zero
     );
 
+    -- Data Cache
     data_cache_unit : entity work.data_cache
     port map(
-        d_in => out_b,
+        data_in => out_b,
         address => alu_out(4 downto 0),
         clk => clk,
         reset => reset,
         data_write => data_write,
-        d_out => d_cache_out
+        data_out => d_cache_out
     );
 
     regfile_in <= d_cache_out when (reg_in_src = '0') else alu_out; -- reg_in_src_mux2
