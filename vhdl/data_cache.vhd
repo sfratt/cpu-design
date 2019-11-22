@@ -12,7 +12,20 @@ entity data_cache is
     );
 end data_cache;
 
-architecture d_cache_arch of data_cache is 
+architecture d_cache_arch of data_cache is
+    type locations is array(0 to 31) of std_logic_vector(31 downto 0);
+    signal loc : locations;
 begin
+    data_out <= loc(conv_integer(address));
 
+    data_cache_unit : process(clk, reset)
+    begin
+        if reset = '1' then
+            for i in 0 to 31 loop
+                loc(i) <= (others => '0');
+            end loop;
+        elsif rising_edge(clk) and data_write = '1' then
+            loc(conv_integer(write_address)) <= data_in;
+        end if;
+    end process;
 end architecture d_cache_arch;
