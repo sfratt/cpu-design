@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
 
 entity data_cache is
     port(
@@ -25,7 +26,7 @@ begin
                 loc(i) <= (others => '0');
             end loop;
         elsif rising_edge(clk) and data_write = '1' then
-            loc(conv_integer(write_address)) <= data_in;
+            loc(conv_integer(address)) <= data_in;
         end if;
     end process;
 end architecture d_cache_arch;
