@@ -26,7 +26,6 @@ begin
             end loop;
         elsif rising_edge(clk) and data_write = '0' then
             data_out <= loc(conv_integer(address));
-            loc(conv_integer(address)) <= data_in;
         elsif rising_edge(clk) and data_write = '1' then
             data_out <= loc(conv_integer(address));
             loc(conv_integer(address)) <= data_in;
