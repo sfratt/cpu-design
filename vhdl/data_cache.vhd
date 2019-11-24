@@ -18,7 +18,7 @@ architecture d_cache_arch of data_cache is
     signal loc : locations;
 begin
 
-    data_cache_unit : process(clk, rst,loc)
+    data_cache_unit : process(clk, rst, loc)
     begin
         if rst = '1' then
             for i in 0 to 31 loop

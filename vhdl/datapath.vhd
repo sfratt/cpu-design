@@ -115,7 +115,7 @@ begin
         data_in => out_b,
         address => alu_out(4 downto 0),
         clk => clk,
-        reset => reset,
+        rst => reset,
         data_write => data_write,
         data_out => d_cache_out
     );
