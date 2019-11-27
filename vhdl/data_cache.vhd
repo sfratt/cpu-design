@@ -17,7 +17,6 @@ architecture d_cache_arch of data_cache is
     type locations is array(0 to 31) of std_logic_vector(31 downto 0);
     signal loc : locations;
 begin
-
     data_cache_unit : process(reset, clk, loc, d_in, address)
     begin
         if reset = '1' then
