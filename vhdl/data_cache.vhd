@@ -25,10 +25,10 @@ begin
                 loc(i) <= (others => '0');
             end loop;
         elsif rising_edge(clk) and data_write = '0' then
-            data_out <= loc(conv_integer(address));
+            d_out <= loc(conv_integer(address));
         elsif rising_edge(clk) and data_write = '1' then
-            data_out <= loc(conv_integer(address));
-            loc(conv_integer(address)) <= data_in;
+            d_out <= loc(conv_integer(address));
+            loc(conv_integer(address)) <= d_in;
         end if;
     end process;
 end architecture d_cache_arch;
