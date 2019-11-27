@@ -7,7 +7,7 @@ entity data_cache is
         d_in        : in std_logic_vector(31 downto 0);
         address     : in std_logic_vector(4 downto 0);
         clk         : in std_logic;
-        rst         : in std_logic;
+        reset         : in std_logic;
         data_write  : in std_logic;
         d_out       : out std_logic_vector(31 downto 0)
     );
@@ -18,9 +18,9 @@ architecture d_cache_arch of data_cache is
     signal loc : locations;
 begin
 
-    data_cache_unit : process(clk, rst, loc)
+    data_cache_unit : process(clk, reset, loc)
     begin
-        if rst = '1' then
+        if reset = '1' then
             for i in 0 to 31 loop
                 loc(i) <= (others => '0');
             end loop;
