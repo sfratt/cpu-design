@@ -16,7 +16,7 @@ end next_address;
 
 architecture next_address_arch of next_address is
     signal control : std_logic_vector(31 downto 0);
-    signal offset : std_logic_vector(15 downto 0);
+    signal offset  : std_logic_vector(15 downto 0);
 begin
     offset <= target_address(15 downto 0);
 
