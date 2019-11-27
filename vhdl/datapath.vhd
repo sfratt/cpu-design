@@ -112,12 +112,12 @@ begin
     -- Data Cache
     data_cache_unit : entity work.data_cache
     port map(
-        data_in => out_b,
+        d_in => out_b,
         address => alu_out(4 downto 0),
         clk => clk,
         rst => reset,
         data_write => data_write,
-        data_out => d_cache_out
+        d_out => d_cache_out
     );
 
     regfile_in <= d_cache_out when (reg_in_src = '0') else alu_out; -- reg_in_src_mux2
