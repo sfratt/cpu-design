@@ -4,7 +4,7 @@ use ieee.std_logic_unsigned.all;
 
 entity instruction_cache is
     port(
-        address_in      : in std_logic_vector(4 downto 0);
+        address         : in std_logic_vector(4 downto 0);
         instruction_out : out std_logic_vector(31 downto 0)
     );
 end instruction_cache;
@@ -12,9 +12,9 @@ end instruction_cache;
 architecture i_cache_arch of instruction_cache is
     signal rt_inter, rd_inter : std_logic_vector(4 downto 0);
 begin
-    i_cache_unit : process(address_in)
+    i_cache_unit : process(address)
     begin
-        case address_in is
+        case address is
             when "00000" => 
                 instruction_out <= "00100000000000010000000000000001"; -- addi r1, r0, 1
             when "00001" => 
