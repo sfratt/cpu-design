@@ -1,0 +1,53 @@
+
+The lab test will involve the SIMULATION only 
+of a small MIPS assembly language program. The
+program, in machine code form is provided in this
+directory.
+ You are to modify your instruction cache of your CPU design so that
+it contains this program.  Your are to use the
+CPU entity given in Lab 5 to demonstrate the the functionality
+of your design. 
+
+The following entity is to be used :
+
+
+
+
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.std_logic_signed.all;
+
+entity  cpu  is
+port(reset : in std_logic;
+     clk   : in std_logic;
+     rs_out, rt_out : out std_logic_vector(3 downto 0); -- output ports from reg. file
+     pc_out : out std_logic_vector(3 downto 0);
+     overflow, zero : out std_logic); -- will not be constrained in Xilinx since not enough LEDs
+end cpu;
+
+
+
+The Modelsim DO file cpu_labtest.do is to be used to perform
+the simulation.
+
+
+You are NOT required to download the synthesized design to the
+XUPV2Pro board as part of the lab test.  
+
+You ARE required to synthesize your entire CPU containing the
+machine code of the lab test program .
+
+
+Submit the following:
+
+1. The precision.log file
+2. The top-level VHDL code containing the datapath  - control unit
+   and the I-cache
+3. Simulation results.
+
+WRITE YOUR NAME ON ALL PAPERS TO BE SUBMITTED.
+
+
+
+
+

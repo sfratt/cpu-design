@@ -5,9 +5,6 @@ use ieee.std_logic_unsigned.all;
 entity instruction_cache is
     port(
         address_in      : in std_logic_vector(4 downto 0);
-        -- reg_dst         : in std_logic;
-        -- rs, rt          : out std_logic_vector(4 downto 0);
-        -- write_address   : out std_logic_vector(4 downto 0);
         instruction_out : out std_logic_vector(31 downto 0)
     );
 end instruction_cache;
@@ -31,22 +28,4 @@ begin
             when others =>
         end case;
     end process;
-
-    -- assign_outputs : process(instruction_out)
-    -- begin
-    --     rs <= instruction_out(25 downto 21);
-    --     rt <= instruction_out(20 downto 16);
-    --     rt_inter <= instruction_out(20 downto 16);
-    --     rd_inter <= instruction_out(16 downto 11);
-    -- end process ;
-
-    -- mux2 : process(rt_inter, rd_inter, reg_dst)
-    -- begin
-    --     case reg_dst is
-    --         when '0' =>
-    --             write_address <= rt_inter;
-    --         when others =>
-    --             write_address <= rd_inter;
-    --     end case ;
-    -- end process;
 end architecture i_cache_arch;
