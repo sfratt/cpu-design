@@ -89,9 +89,9 @@ begin
     -- Sign Extend
     sign_extend_unit : entity work.sign_extend
     port map(
-        data_in => instruction_out(15 downto 0),
+        d_in => instruction_out(15 downto 0),
         func => func,
-        data_out => sign_extend_out
+        d_out => sign_extend_out
     );
 
     y_in <= out_b when (alu_src = '0') else sign_extend_out; -- alu_src_mux2
