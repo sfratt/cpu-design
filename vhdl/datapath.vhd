@@ -17,6 +17,9 @@ entity datapath is
         func        : in std_logic_vector(1 downto 0);
         op_code     : out std_logic_vector(5 downto 0);
         func_code   : out std_logic_vector(5 downto 0);
+        rs_out      : out std_logic_vector(31 downto 0);
+        rt_out      : out std_logic_vector(31 downto 0);
+        pc_out      : out std_logic_vector(31 downto 0);
         overflow    : out std_logic;
         zero        : out std_logic
     );
@@ -50,6 +53,10 @@ begin
         target_address => target_address,
         next_pc => next_pc
     );
+
+    rs_out <= out_a;
+    rt_out <= out_b;
+    pc_out <= pc;
 
     -- Program Counter
     pc_unit : entity work.pc
