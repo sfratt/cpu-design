@@ -24,21 +24,21 @@ begin
                 instruction_out <= "00000000001000100000100000100000"; -- add r1,r1,r2
             when "00100" =>              
                 instruction_out <= "00100000010000101111111111111111"; -- addi r2, r2, -1
-            when "00101"
+            when "00101" =>
                 instruction_out <= "00010000010000110000000000000001"; -- beq r2,r3 (+1) THERE
-            when "00110"
+            when "00110" =>
                 instruction_out <= "00001000000000000000000000000011"; -- jump 3  (LOOP)
-            when "00111"
+            when "00111" =>
                 instruction_out <= "10101100000000010000000000000000"; -- sw r1, 0(r0)
-            when "01000"
+            when "01000" =>
                 instruction_out <= "10001100000001000000000000000000"; -- lw r4, 0(r0)
-            when "01001"
+            when "01001" =>
                 instruction_out <= "00110000100001000000000000001010"; -- andi r4,r4, 0x000A
-            when "01010"
+            when "01010" =>
                 instruction_out <= "00110100100001000000000000000001"; -- ori r4,r4, 0x0001
-            when "01011"
+            when "01011" =>
                 instruction_out <= "00111000100001000000000000001011"; -- xori r4,r4, 0xB
-            when "01100"
+            when "01100" =>
                 instruction_out <= "00111000100001000000000000000000"; -- xori r4,r4, 0x0000
             when others =>
                 instruction_out <= "00000000000000000000000000000000"; -- don't care
