@@ -15,6 +15,8 @@ entity datapath is
         add_sub     : in std_logic;
         logic_func  : in std_logic_vector(1 downto 0);
         func        : in std_logic_vector(1 downto 0);
+        op_code     : out std_logic_vector(4 downto 0);
+        func_code   : out std_logic_vector(4 downto 0);
         overflow    : out std_logic;
         zero        : out std_logic
     );
@@ -65,11 +67,14 @@ begin
         instruction_out => instruction_out
     );
 
-    target_address <= instruction_out(25 downto 0);
-    rs_inter <= instruction_out(25 downto 21);
-    rt_inter <= instruction_out(20 downto 16);
-    rd_inter <= instruction_out(15 downto 11);
+    op_code <= instruction_out(31 downto 26); -- opcode (J-/I-/R-format)
+    target_address <= instruction_out(25 downto 0); -- target address (J-format)
+    rs_inter <= instruction_out(25 downto 21); -- source 1 (I-/R-format)
+    rt_inter <= instruction_out(20 downto 16); -- source 2 (R-format)
+    rd_inter <= instruction_out(15 downto 11); -- destination (R-format)
+    func_code <= instruction_out(5 downto 0); -- function (R-format)
 
+    -- I-format when '0' else R-format when '1'
     write_address <= rt_inter when (reg_dst = '0') else rd_inter; -- reg_dst_mux2
 
     -- Register File
