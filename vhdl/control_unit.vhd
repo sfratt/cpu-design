@@ -4,8 +4,8 @@ use ieee.std_logic_signed.all;
 
 entity control_unit is
     port(
-        op_code     : in std_logic_vector(4 downto 0);
-        func_code   : in std_logic_vector(4 downto 0);
+        op_code     : in std_logic_vector(5 downto 0);
+        func_code   : in std_logic_vector(5 downto 0);
         reg_write   : out std_logic;
         reg_dst     : out std_logic;
         reg_in_src  : out std_logic;
