@@ -13,6 +13,37 @@ entity cpu is
 end cpu;
 
 architecture cpu_arch of cpu is
+    signal op_code     : std_logic_vector(5 downto 0);
+    signal func_code   : std_logic_vector(5 downto 0);
+    signal reg_write   : std_logic;
+    signal reg_dst     : std_logic;
+    signal reg_in_src  : std_logic;
+    signal alu_src     : std_logic;
+    signal add_sub     : std_logic;
+    signal data_write  : std_logic;
+    signal logic_func  : std_logic_vector(1 downto 0);
+    signal func        : std_logic_vector(1 downto 0);
+    signal branch_type : std_logic_vector(1 downto 0);
+    signal pc_sel      : std_logic_vector(1 downto 0);
 begin
-
+    -- Datapath
+    datapath_unit : entity work.datapath
+    port map(
+        pc_sel      => pc_sel,     
+        branch_type => branch_type,
+        reset       => reset,      
+        clk         => clk,        
+        reg_dst     => reg_dst,    
+        alu_src     => alu_src,    
+        reg_in_src  => reg_in_src, 
+        reg_write   => reg_write,  
+        data_write  => data_write, 
+        add_sub     => add_sub,    
+        logic_func  => logic_func, 
+        func        => func,       
+        op_code     => op_code,    
+        func_code   => func_code,  
+        overflow    => overflow,   
+        zero        => zero       
+    );
 end architecture cpu_arch;
