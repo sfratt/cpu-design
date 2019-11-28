@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity sign_extend is
 	port(
 		d_in  : in  std_logic_vector(15 downto 0);
-		func     : in  std_logic_vector(1 downto 0);
+		func  : in  std_logic_vector(1 downto 0);
 		d_out : out std_logic_vector(31 downto 0)
 	);
 end entity sign_extend;
