@@ -24,24 +24,24 @@ begin
     begin
         case branch_type is
             when "00" =>
-                control <= pc + X"00000001"; -- no branch
+                control <= pc + 1; -- no branch
             when "01" =>
                 if (rs = rt) then
-                    control <= pc + X"00000001" + std_logic_vector(resize(signed(offset), control'length));
+                    control <= pc + 1 + std_logic_vector(resize(signed(offset), control'length));
                 else
-                    control <= pc + X"00000001"; -- beq resolved to false
+                    control <= pc + 1; -- beq resolved to false
                 end if;
             when "10" =>
                 if (rs /= rt) then
-                    control <= pc + X"00000001" + std_logic_vector(resize(signed(offset), control'length));
+                    control <= pc + 1 + std_logic_vector(resize(signed(offset), control'length));
                 else
-                    control <= pc + X"00000001"; -- bne resolved to false
+                    control <= pc + 1; -- bne resolved to false
                 end if;
             when others =>
                 if (rs < 0) then
-                    control <= pc + X"00000001" + std_logic_vector(resize(signed(offset), control'length));
+                    control <= pc + 1 + std_logic_vector(resize(signed(offset), control'length));
                 else
-                    control <= pc + X"00000001"; -- bltz resolved to false
+                    control <= pc + 1; -- bltz resolved to false
                 end if;
         end case;
     end process;
