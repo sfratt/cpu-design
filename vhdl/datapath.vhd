@@ -15,8 +15,8 @@ entity datapath is
         add_sub     : in std_logic;
         logic_func  : in std_logic_vector(1 downto 0);
         func        : in std_logic_vector(1 downto 0);
-        op_code     : out std_logic_vector(4 downto 0);
-        func_code   : out std_logic_vector(4 downto 0);
+        op_code     : out std_logic_vector(5 downto 0);
+        func_code   : out std_logic_vector(5 downto 0);
         overflow    : out std_logic;
         zero        : out std_logic
     );
