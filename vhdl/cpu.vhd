@@ -53,9 +53,9 @@ begin
         zero        => zero   
     );
 
-    rs_out <= rs_inter;
-    rt_out <= rt_inter;
-    pc_out <= pc_inter;
+    rs_out <= rs_inter(3 downto 0);
+    rt_out <= rt_inter(3 downto 0);
+    pc_out <= pc_inter(3 downto 0);
 
     -- Control Unit
     control_unit : entity work.control_unit
