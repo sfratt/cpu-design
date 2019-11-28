@@ -133,5 +133,4 @@ begin
     );
 
     regfile_in <= d_cache_out when (reg_in_src = '0') else alu_out; -- reg_in_src_mux2
-
 end architecture datapath_arch;

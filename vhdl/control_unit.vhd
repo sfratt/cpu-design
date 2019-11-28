@@ -81,5 +81,4 @@ begin
     func <= control(5 downto 4);
     branch_type <= control(3 downto 2);
     pc_sel <= control(1 downto 0);
-    
 end architecture control_arch;
