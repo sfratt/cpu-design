@@ -46,4 +46,21 @@ begin
         overflow    => overflow,   
         zero        => zero       
     );
+
+    -- Control Unit
+    control_unit : entity work.control_unit
+    port map(
+        op_code     => op_code,     
+        func_code   => func_code,   
+        reg_write   => reg_write,   
+        reg_dst     => reg_dst,     
+        reg_in_src  => reg_in_src,  
+        alu_src     => alu_src,     
+        add_sub     => add_sub,     
+        data_write  => data_write,  
+        logic_func  => logic_func,  
+        func        => func,        
+        branch_type => branch_type, 
+        pc_sel      => pc_sel      
+    );
 end architecture cpu_arch;
