@@ -63,7 +63,7 @@ begin
     -- Instruction Cache
     i_cache_unit : entity work.instruction_cache
     port map(
-        address_in => pc(4 downto 0),
+        address => pc(4 downto 0),
         instruction_out => instruction_out
     );
 
